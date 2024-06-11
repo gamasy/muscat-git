@@ -1,0 +1,192 @@
+apiVersion: v1
+items:
+- apiVersion: machine.openshift.io/v1beta1
+  kind: MachineSet
+  metadata:
+    annotations:
+      machine.openshift.io/memoryMb: "49152"
+      machine.openshift.io/vCPU: "16"
+    creationTimestamp: "2024-06-01T17:50:33Z"
+    generation: 1
+    labels:
+      machine.openshift.io/cluster-api-cluster: dct-ocp-01-g6rd6
+    name: dct-ocp-01-g6rd6-infra-0
+    namespace: openshift-machine-api
+    resourceVersion: "4366087"
+    uid: cbbd6664-ef2f-445e-a43c-47e70cd5badd
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        machine.openshift.io/cluster-api-cluster: dct-ocp-01-g6rd6
+        machine.openshift.io/cluster-api-machineset: dct-ocp-01-g6rd6-infra-0
+    template:
+      metadata:
+        labels:
+          machine.openshift.io/cluster-api-cluster: dct-ocp-01-g6rd6
+          machine.openshift.io/cluster-api-machine-role: infra
+          machine.openshift.io/cluster-api-machine-type: infra
+          machine.openshift.io/cluster-api-machineset: dct-ocp-01-g6rd6-infra-0
+      spec:
+        lifecycleHooks: {}
+        metadata:
+          labels:
+            node-role.kubernetes.io/infra: ""
+        providerSpec:
+          value:
+            apiVersion: machine.openshift.io/v1beta1
+            credentialsSecret:
+              name: vsphere-cloud-credentials
+            diskGiB: 200
+            kind: VSphereMachineProviderSpec
+            memoryMiB: 49152
+            metadata:
+              creationTimestamp: null
+            network:
+              devices:
+              - networkName: DCT_CORE02_VLAN_1154
+            numCPUs: 16
+            numCoresPerSocket: 2
+            snapshot: ""
+            template: dct-ocp-01-g6rd6-rhcos-generated-region-generated-zone
+            userDataSecret:
+              name: worker-user-data
+            workspace:
+              datacenter: DCT_SEEBHO
+              datastore: /DCT_SEEBHO/datastore/DCT_CORE_OCP_ESX_DS45
+              folder: /DCT_SEEBHO/vm/dct-ocp-01-g6rd6
+              resourcePool: /DCT_SEEBHO/host/CORE02//Resources
+              server: dct-test-vcenter.testad.com
+  status:
+    availableReplicas: 3
+    fullyLabeledReplicas: 3
+    observedGeneration: 1
+    readyReplicas: 3
+    replicas: 3
+- apiVersion: machine.openshift.io/v1beta1
+  kind: MachineSet
+  metadata:
+    annotations:
+      machine.openshift.io/memoryMb: "49152"
+      machine.openshift.io/vCPU: "10"
+    creationTimestamp: "2024-06-02T05:50:36Z"
+    generation: 1
+    labels:
+      machine.openshift.io/cluster-api-cluster: dct-ocp-01-g6rd6
+    name: dct-ocp-01-g6rd6-storage-0
+    namespace: openshift-machine-api
+    resourceVersion: "4363969"
+    uid: ef464d7c-1daa-4d96-9a0e-550e1e448079
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        machine.openshift.io/cluster-api-cluster: dct-ocp-01-g6rd6
+        machine.openshift.io/cluster-api-machineset: dct-ocp-01-g6rd6-storage-0
+    template:
+      metadata:
+        labels:
+          machine.openshift.io/cluster-api-cluster: dct-ocp-01-g6rd6
+          machine.openshift.io/cluster-api-machine-role: storage
+          machine.openshift.io/cluster-api-machine-type: storage
+          machine.openshift.io/cluster-api-machineset: dct-ocp-01-g6rd6-storage-0
+      spec:
+        lifecycleHooks: {}
+        metadata:
+          labels:
+            node-role.kubernetes.io/storage: ""
+        providerSpec:
+          value:
+            apiVersion: machine.openshift.io/v1beta1
+            credentialsSecret:
+              name: vsphere-cloud-credentials
+            diskGiB: 200
+            kind: VSphereMachineProviderSpec
+            memoryMiB: 49152
+            metadata:
+              creationTimestamp: null
+            network:
+              devices:
+              - networkName: DCT_CORE02_VLAN_1154
+            numCPUs: 10
+            numCoresPerSocket: 2
+            snapshot: ""
+            template: dct-ocp-01-g6rd6-rhcos-generated-region-generated-zone
+            userDataSecret:
+              name: worker-user-data
+            workspace:
+              datacenter: DCT_SEEBHO
+              datastore: /DCT_SEEBHO/datastore/DCT_CORE_OCP_ESX_DS45
+              folder: /DCT_SEEBHO/vm/dct-ocp-01-g6rd6
+              resourcePool: /DCT_SEEBHO/host/CORE02//Resources
+              server: dct-test-vcenter.testad.com
+  status:
+    availableReplicas: 3
+    fullyLabeledReplicas: 3
+    observedGeneration: 1
+    readyReplicas: 3
+    replicas: 3
+- apiVersion: machine.openshift.io/v1beta1
+  kind: MachineSet
+  metadata:
+    annotations:
+      machine.openshift.io/memoryMb: "65536"
+      machine.openshift.io/vCPU: "12"
+    creationTimestamp: "2024-06-01T11:25:58Z"
+    generation: 3
+    labels:
+      machine.openshift.io/cluster-api-cluster: dct-ocp-01-g6rd6
+    name: dct-ocp-01-g6rd6-worker-0
+    namespace: openshift-machine-api
+    resourceVersion: "4424263"
+    uid: 9513813c-ef44-4470-89e1-4bd4ea78b2b3
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        machine.openshift.io/cluster-api-cluster: dct-ocp-01-g6rd6
+        machine.openshift.io/cluster-api-machineset: dct-ocp-01-g6rd6-worker-0
+    template:
+      metadata:
+        labels:
+          machine.openshift.io/cluster-api-cluster: dct-ocp-01-g6rd6
+          machine.openshift.io/cluster-api-machine-role: worker
+          machine.openshift.io/cluster-api-machine-type: worker
+          machine.openshift.io/cluster-api-machineset: dct-ocp-01-g6rd6-worker-0
+      spec:
+        lifecycleHooks: {}
+        metadata: {}
+        providerSpec:
+          value:
+            apiVersion: machine.openshift.io/v1beta1
+            credentialsSecret:
+              name: vsphere-cloud-credentials
+            diskGiB: 200
+            kind: VSphereMachineProviderSpec
+            memoryMiB: 65536
+            metadata:
+              creationTimestamp: null
+            network:
+              devices:
+              - networkName: DCT_CORE02_VLAN_1154
+            numCPUs: 12
+            numCoresPerSocket: 2
+            snapshot: ""
+            template: dct-ocp-01-g6rd6-rhcos-generated-region-generated-zone
+            userDataSecret:
+              name: worker-user-data
+            workspace:
+              datacenter: DCT_SEEBHO
+              datastore: /DCT_SEEBHO/datastore/DCT_CORE_OCP_ESX_DS45
+              folder: /DCT_SEEBHO/vm/dct-ocp-01-g6rd6
+              resourcePool: /DCT_SEEBHO/host/CORE02//Resources
+              server: dct-test-vcenter.testad.com
+  status:
+    availableReplicas: 3
+    fullyLabeledReplicas: 3
+    observedGeneration: 3
+    readyReplicas: 3
+    replicas: 3
+kind: List
+metadata:
+  resourceVersion: ""

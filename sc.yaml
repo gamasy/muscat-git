@@ -1,0 +1,110 @@
+apiVersion: v1
+items:
+- allowVolumeExpansion: true
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    annotations:
+      description: Provides RWO Filesystem volumes, and RWO and RWX Block volumes
+    creationTimestamp: "2024-06-05T06:32:48Z"
+    name: ocs-storagecluster-ceph-rbd
+    resourceVersion: "2003874"
+    uid: 45f0d0cd-b708-497b-ae87-5d23bfab0cf8
+  parameters:
+    clusterID: openshift-storage
+    csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+    csi.storage.k8s.io/controller-expand-secret-namespace: openshift-storage
+    csi.storage.k8s.io/fstype: ext4
+    csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+    csi.storage.k8s.io/node-stage-secret-namespace: openshift-storage
+    csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+    csi.storage.k8s.io/provisioner-secret-namespace: openshift-storage
+    imageFeatures: layering,deep-flatten,exclusive-lock,object-map,fast-diff
+    imageFormat: "2"
+    pool: ocs-storagecluster-cephblockpool
+  provisioner: openshift-storage.rbd.csi.ceph.com
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+- apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    annotations:
+      description: Provides Object Bucket Claims (OBCs)
+    creationTimestamp: "2024-06-05T06:29:33Z"
+    name: ocs-storagecluster-ceph-rgw
+    resourceVersion: "2000467"
+    uid: fcc899b0-79ab-4a7c-8236-dd1bbfc8eafe
+  parameters:
+    objectStoreName: ocs-storagecluster-cephobjectstore
+    objectStoreNamespace: openshift-storage
+    region: us-east-1
+  provisioner: openshift-storage.ceph.rook.io/bucket
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+- allowVolumeExpansion: true
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    annotations:
+      description: Provides RWO and RWX Filesystem volumes
+    creationTimestamp: "2024-06-05T06:32:48Z"
+    name: ocs-storagecluster-cephfs
+    resourceVersion: "2003873"
+    uid: 671e4a04-479e-406b-8138-aef97cf0f70a
+  parameters:
+    clusterID: openshift-storage
+    csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+    csi.storage.k8s.io/controller-expand-secret-namespace: openshift-storage
+    csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+    csi.storage.k8s.io/node-stage-secret-namespace: openshift-storage
+    csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+    csi.storage.k8s.io/provisioner-secret-namespace: openshift-storage
+    fsName: ocs-storagecluster-cephfilesystem
+  provisioner: openshift-storage.cephfs.csi.ceph.com
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+- apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    annotations:
+      description: Provides Object Bucket Claims (OBCs)
+    creationTimestamp: "2024-06-05T06:34:41Z"
+    name: openshift-storage.noobaa.io
+    resourceVersion: "2005889"
+    uid: 7b351653-a719-4c3c-8b40-3d8464cbd1e0
+  parameters:
+    bucketclass: noobaa-default-bucket-class
+  provisioner: openshift-storage.noobaa.io/obc
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+- allowVolumeExpansion: true
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "true"
+    creationTimestamp: "2024-06-01T11:49:18Z"
+    name: thin-csi
+    resourceVersion: "13564"
+    uid: 02ad22a2-5746-44f6-868b-da0e54229d7e
+  parameters:
+    StoragePolicyName: openshift-storage-policy-dct-ocp-01-g6rd6
+  provisioner: csi.vsphere.vmware.com
+  reclaimPolicy: Delete
+  volumeBindingMode: WaitForFirstConsumer
+- allowVolumeExpansion: true
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    creationTimestamp: "2024-06-05T06:28:02Z"
+    name: thin-csi-odf
+    resourceVersion: "1999598"
+    uid: 465bea4f-a844-4e82-baef-8f92a6d3bf5a
+  parameters:
+    StoragePolicyName: ODF Datastore
+  provisioner: csi.vsphere.vmware.com
+  reclaimPolicy: Delete
+  volumeBindingMode: WaitForFirstConsumer
+kind: List
+metadata:
+  resourceVersion: ""
